@@ -1,0 +1,46 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+def springVersion = '5.2.19.RELEASE'
+def springBootVersion = '2.6.6'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.20'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.5.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-hikaricp', version: '5.4.10.Final'
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '3.4.5'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: springBootVersion
+    implementation group: 'org.springframework', name: 'spring-orm', version: '5.3.19'
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.3.Final'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '2.7.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
