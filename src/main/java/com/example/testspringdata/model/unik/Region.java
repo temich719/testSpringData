@@ -1,6 +1,5 @@
-package com.example.testspringdata.model;
+package com.example.testspringdata.model.unik;
 
-import com.example.testspringdata.audit.Audit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,42 +7,29 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "tag")
-public class Tag {
+@Table(name = "regions")
+public class Region {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name", unique = true)
     private String name;
-
-    @Embedded
-    private Audit audit = new Audit();
-
-    public Tag(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    @ManyToMany(mappedBy = "tags")
-    Set<GiftCertificate> giftCertificates;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Tag tag = (Tag) o;
+        Region region = (Region) o;
 
-        if (id != tag.id) return false;
-        return Objects.equals(name, tag.name);
+        if (id != region.id) return false;
+        return Objects.equals(name, region.name);
     }
 
     @Override
@@ -55,7 +41,7 @@ public class Tag {
 
     @Override
     public String toString() {
-        return "Tag{" +
+        return "Region{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
